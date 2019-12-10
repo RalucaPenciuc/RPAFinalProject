@@ -1,4 +1,4 @@
-<Activity mc:Ignorable="sap sap2010" x:Class="GoogleDrive_GetInputData" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:gadvd="clr-namespace:Google.Apis.Drive.v3.Data;assembly=Google.Apis.Drive.v3" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:mva="clr-namespace:Microsoft.VisualBasic.Activities;assembly=System.Activities" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=mscorlib" xmlns:ug="clr-namespace:UiPath.GSuite;assembly=UiPath.GSuite" xmlns:uga="clr-namespace:UiPath.GSuite.Activities;assembly=UiPath.GSuite.Activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+<Activity mc:Ignorable="sap sap2010" x:Class="GoogleDrive_GetInputData" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:gadvd="clr-namespace:Google.Apis.Drive.v3.Data;assembly=Google.Apis.Drive.v3" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:mva="clr-namespace:Microsoft.VisualBasic.Activities;assembly=System.Activities" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=mscorlib" xmlns:ug="clr-namespace:UiPath.GSuite;assembly=UiPath.GSuite" xmlns:uga="clr-namespace:UiPath.GSuite.Activities;assembly=UiPath.GSuite.Activities" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
   <x:Members>
     <x:Property Name="out_fileFullPath" Type="OutArgument(x:String)" />
     <x:Property Name="in_config" Type="InArgument(scg:Dictionary(x:String, x:Object))" />
@@ -6,7 +6,7 @@
   <mva:VisualBasic.Settings>
     <x:Null />
   </mva:VisualBasic.Settings>
-  <sap:VirtualizedContainerService.HintSize>476.8,676</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>476.8,808.8</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>ActivityBuilder_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <sco:Collection x:TypeArguments="x:String">
@@ -62,7 +62,7 @@
       <AssemblyReference>System.ComponentModel.Composition</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="GoogleDrive_GetInputData" sap:VirtualizedContainerService.HintSize="436.8,596" sap2010:WorkflowViewState.IdRef="Sequence_2">
+  <Sequence DisplayName="GoogleDrive_GetInputData" sap:VirtualizedContainerService.HintSize="436.8,728.8" sap2010:WorkflowViewState.IdRef="Sequence_2">
     <Sequence.Variables>
       <Variable x:TypeArguments="gadvd:File" Name="inputFile" />
       <Variable x:TypeArguments="x:String" Default="[in_config(&quot;keyPath&quot;).ToString]" Name="in_keyPath" />
@@ -75,6 +75,7 @@
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
+    <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="414.4,92.8" sap2010:WorkflowViewState.IdRef="LogMessage_1" Level="Info" Message="[&quot;Downloading the input file...&quot;]" />
     <uga:GSuiteApplicationScope ApiKey="{x:Null}" CredentialID="{x:Null}" CredentialSecret="{x:Null}" Password="{x:Null}" ServiceAccountEmail="{x:Null}" AuthenticationType="ServiceAccountKey" DisplayName="GSuite Application Scope" HasDomainWideAccesss="True" sap:VirtualizedContainerService.HintSize="414.4,471.2" sap2010:WorkflowViewState.IdRef="GSuiteApplicationScope_1" KeyPath="[in_keyPath]" KeyType="JSON" Services="Gmail, Drive" UserEmail="[in_userEmail]">
       <uga:GSuiteApplicationScope.Body>
         <ActivityAction x:TypeArguments="ug:SimpleObjectContainer">

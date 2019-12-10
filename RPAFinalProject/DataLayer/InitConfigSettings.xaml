@@ -6,7 +6,7 @@
   <mva:VisualBasic.Settings>
     <x:Null />
   </mva:VisualBasic.Settings>
-  <sap:VirtualizedContainerService.HintSize>556.8,791.2</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>556.8,924</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>ActivityBuilder_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <sco:Collection x:TypeArguments="x:String">
@@ -58,7 +58,7 @@
       <AssemblyReference>System.ComponentModel.Composition</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="InitConfigSettings" sap:VirtualizedContainerService.HintSize="516.8,711.2" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence DisplayName="InitConfigSettings" sap:VirtualizedContainerService.HintSize="516.8,844" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
       <Variable x:TypeArguments="sd:DataTable" Name="configDataTable" />
     </Sequence.Variables>
@@ -67,6 +67,7 @@
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
+    <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="494.4,92.8" sap2010:WorkflowViewState.IdRef="LogMessage_1" Level="Info" Message="[&quot;Reading Configs...&quot;]" />
     <Assign DisplayName="Initialize Output Value" sap:VirtualizedContainerService.HintSize="494.4,60" sap2010:WorkflowViewState.IdRef="Assign_1">
       <Assign.To>
         <OutArgument x:TypeArguments="scg:Dictionary(x:String, x:Object)">[out_config]</OutArgument>
@@ -82,7 +83,7 @@
           <ActivityAction.Argument>
             <DelegateInArgument x:TypeArguments="sd:DataRow" Name="row" />
           </ActivityAction.Argument>
-          <If Condition="[NOT String.IsNullOrEmpty(row(&quot;Name&quot;).ToString.Trim)]" sap:VirtualizedContainerService.HintSize="464,209.6" sap2010:WorkflowViewState.IdRef="If_1">
+          <If Condition="[NOT String.IsNullOrEmpty(row(&quot;Name&quot;).ToString.Trim)]" DisplayName="If there are still settings to read" sap:VirtualizedContainerService.HintSize="464,209.6" sap2010:WorkflowViewState.IdRef="If_1">
             <If.Then>
               <Assign DisplayName="Add key/value pair" sap:VirtualizedContainerService.HintSize="243.2,60" sap2010:WorkflowViewState.IdRef="Assign_2">
                 <Assign.To>
