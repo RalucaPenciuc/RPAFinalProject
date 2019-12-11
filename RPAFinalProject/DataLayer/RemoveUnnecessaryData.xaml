@@ -1,11 +1,12 @@
-<Activity mc:Ignorable="sap sap2010" x:Class="RemoveUnnecessaryData" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:mva="clr-namespace:Microsoft.VisualBasic.Activities;assembly=System.Activities" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=mscorlib" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+<Activity mc:Ignorable="sap sap2010" x:Class="RemoveUnnecessaryData" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:mva="clr-namespace:Microsoft.VisualBasic.Activities;assembly=System.Activities" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=mscorlib" xmlns:sd="clr-namespace:System.Data;assembly=System.Data" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
   <x:Members>
     <x:Property Name="in_inputFilePath" Type="InArgument(x:String)" />
+    <x:Property Name="out_trimedInputDataTable" Type="OutArgument(sd:DataTable)" />
   </x:Members>
   <mva:VisualBasic.Settings>
     <x:Null />
   </mva:VisualBasic.Settings>
-  <sap:VirtualizedContainerService.HintSize>272.8,267.2</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>556.8,1024</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>ActivityBuilder_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <sco:Collection x:TypeArguments="x:String">
@@ -30,6 +31,7 @@
       <x:String>System.Windows.Markup</x:String>
       <x:String>UiPath.Core</x:String>
       <x:String>UiPath.Core.Activities</x:String>
+      <x:String>System.Xml.Serialization</x:String>
     </sco:Collection>
   </TextExpression.NamespacesForImplementation>
   <TextExpression.ReferencesForImplementation>
@@ -50,14 +52,123 @@
       <AssemblyReference>System.Xaml</AssemblyReference>
       <AssemblyReference>UiPath.System.Activities</AssemblyReference>
       <AssemblyReference>UiPath.UiAutomation.Activities</AssemblyReference>
+      <AssemblyReference>System.ServiceModel</AssemblyReference>
+      <AssemblyReference>UiPath.Excel</AssemblyReference>
+      <AssemblyReference>UiPath.Mail</AssemblyReference>
+      <AssemblyReference>System.ComponentModel.Composition</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="RemoveUnnecessaryData" sap:VirtualizedContainerService.HintSize="232.8,187.2" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence DisplayName="RemoveUnnecessaryData" sap:VirtualizedContainerService.HintSize="516.8,944" sap2010:WorkflowViewState.IdRef="Sequence_1">
+    <Sequence.Variables>
+      <Variable x:TypeArguments="sd:DataTable" Name="inputDataTable" />
+    </Sequence.Variables>
     <sap:WorkflowViewStateService.ViewState>
       <scg:Dictionary x:TypeArguments="x:String, x:Object">
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <WriteLine DisplayName="Write Line" sap:VirtualizedContainerService.HintSize="210.4,62.4" sap2010:WorkflowViewState.IdRef="WriteLine_1" Text="[in_inputFilePath]" />
+    <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="494.4,92.8" sap2010:WorkflowViewState.IdRef="LogMessage_1" Level="Info" Message="[&quot;Trimming the input file...&quot;]" />
+    <ui:ReadRange Range="{x:Null}" AddHeaders="True" DataTable="[inputDataTable]" DisplayName="Read Whole Input Sheet" sap:VirtualizedContainerService.HintSize="494.4,88" sap2010:WorkflowViewState.IdRef="ReadRange_1" SheetName="Sheet1" WorkbookPath="[in_inputFilePath]" />
+    <ui:FilterDataTable DataTable="[inputDataTable]" DisplayName="Delete Irrelevant Rows" FilterRowsMode="Remove" sap:VirtualizedContainerService.HintSize="494.4,60" sap2010:WorkflowViewState.IdRef="FilterDataTable_1" OutputDataTable="[inputDataTable]" SelectColumnsMode="Keep">
+      <ui:FilterDataTable.Filters>
+        <scg:List x:TypeArguments="ui:FilterOperationArgument" Capacity="4">
+          <ui:FilterOperationArgument BooleanOperator="And" Operator="GT">
+            <ui:FilterOperationArgument.Column>
+              <InArgument x:TypeArguments="x:String">["CM MATERNITATE"]</InArgument>
+            </ui:FilterOperationArgument.Column>
+            <ui:FilterOperationArgument.Operand>
+              <InArgument x:TypeArguments="x:Int32">[0]</InArgument>
+            </ui:FilterOperationArgument.Operand>
+          </ui:FilterOperationArgument>
+          <ui:FilterOperationArgument BooleanOperator="Or" Operator="GT">
+            <ui:FilterOperationArgument.Column>
+              <InArgument x:TypeArguments="x:String">["CM RISC MATERNAL"]</InArgument>
+            </ui:FilterOperationArgument.Column>
+            <ui:FilterOperationArgument.Operand>
+              <InArgument x:TypeArguments="x:Int32">[0]</InArgument>
+            </ui:FilterOperationArgument.Operand>
+          </ui:FilterOperationArgument>
+          <ui:FilterOperationArgument BooleanOperator="Or" Operator="EQ">
+            <ui:FilterOperationArgument.Column>
+              <InArgument x:TypeArguments="x:String">["NR ORE LUNA"]</InArgument>
+            </ui:FilterOperationArgument.Column>
+            <ui:FilterOperationArgument.Operand>
+              <InArgument x:TypeArguments="x:Int32">[0]</InArgument>
+            </ui:FilterOperationArgument.Operand>
+          </ui:FilterOperationArgument>
+        </scg:List>
+      </ui:FilterDataTable.Filters>
+      <ui:FilterDataTable.SelectColumns>
+        <scg:List x:TypeArguments="InArgument" Capacity="4">
+          <x:Null />
+        </scg:List>
+      </ui:FilterDataTable.SelectColumns>
+    </ui:FilterDataTable>
+    <ui:ForEachRow CurrentIndex="{x:Null}" DataTable="[inputDataTable]" DisplayName="For Each Row" sap:VirtualizedContainerService.HintSize="494.4,358.4" sap2010:WorkflowViewState.IdRef="ForEachRow_1">
+      <ui:ForEachRow.Body>
+        <ActivityAction x:TypeArguments="sd:DataRow">
+          <ActivityAction.Argument>
+            <DelegateInArgument x:TypeArguments="sd:DataRow" Name="row" />
+          </ActivityAction.Argument>
+          <If Condition="[Convert.ToDouble(row(&quot;PARTE VARIABILA NET&quot;)) &gt; 0 and Convert.ToDouble(row(&quot;PARTE VARIABILA NET&quot;)) &lt; 99.99]" DisplayName="If column meets condition then update row value" sap:VirtualizedContainerService.HintSize="464,209.6" sap2010:WorkflowViewState.IdRef="If_1">
+            <If.Then>
+              <Assign sap:VirtualizedContainerService.HintSize="243.2,60" sap2010:WorkflowViewState.IdRef="Assign_1">
+                <Assign.To>
+                  <OutArgument x:TypeArguments="x:Object">[row("PARTE VARIABILA NET")]</OutArgument>
+                </Assign.To>
+                <Assign.Value>
+                  <InArgument x:TypeArguments="x:Object">["0"]</InArgument>
+                </Assign.Value>
+              </Assign>
+            </If.Then>
+          </If>
+        </ActivityAction>
+      </ui:ForEachRow.Body>
+    </ui:ForEachRow>
+    <ui:FilterDataTable DataTable="[inputDataTable]" DisplayName="Keep Relevant Columns" FilterRowsMode="Keep" sap:VirtualizedContainerService.HintSize="494.4,60" sap2010:WorkflowViewState.IdRef="FilterDataTable_2" OutputDataTable="[out_trimedInputDataTable]" SelectColumnsMode="Keep">
+      <ui:FilterDataTable.Filters>
+        <scg:List x:TypeArguments="ui:FilterOperationArgument" Capacity="4">
+          <ui:FilterOperationArgument Column="{x:Null}" Operand="{x:Null}" BooleanOperator="And" Operator="LT" />
+        </scg:List>
+      </ui:FilterDataTable.Filters>
+      <ui:FilterDataTable.SelectColumns>
+        <scg:List x:TypeArguments="InArgument" Capacity="64">
+          <InArgument x:TypeArguments="x:String">["CUI"]</InArgument>
+          <InArgument x:TypeArguments="x:String">["Departament"]</InArgument>
+          <InArgument x:TypeArguments="x:String">["Subdepartament"]</InArgument>
+          <InArgument x:TypeArguments="x:String">["TARIFAR INCADRARE"]</InArgument>
+          <InArgument x:TypeArguments="x:String">["REALIZAT SUPLIMENTAR"]</InArgument>
+          <InArgument x:TypeArguments="x:String">["ORE DE NOAPTE"]</InArgument>
+          <InArgument x:TypeArguments="x:String">["SPOR DE NOAPTE"]</InArgument>
+          <InArgument x:TypeArguments="x:String">["PARTE VARIABILA NET"]</InArgument>
+          <InArgument x:TypeArguments="x:String">["PRIMA DETASARE NET"]</InArgument>
+          <InArgument x:TypeArguments="x:String">["NET PRIMA DE POST NET"]</InArgument>
+          <InArgument x:TypeArguments="x:String">["PRIMA DE POST"]</InArgument>
+          <InArgument x:TypeArguments="x:String">["PRIMA DE POST BRUT"]</InArgument>
+          <InArgument x:TypeArguments="x:String">["PRIMA EXCEPTIONALA NET"]</InArgument>
+          <InArgument x:TypeArguments="x:String">["PRIMA EXPATRIERE NET"]</InArgument>
+          <InArgument x:TypeArguments="x:String">["PRIMA INTERIMAT NET"]</InArgument>
+          <InArgument x:TypeArguments="x:String">["PRIMA MOBILITATE NET"]</InArgument>
+          <InArgument x:TypeArguments="x:String">["PRIMA DETASARE BRUT"]</InArgument>
+          <InArgument x:TypeArguments="x:String">["PRIMA OBISNUITA NETA"]</InArgument>
+          <InArgument x:TypeArguments="x:String">["Regularizari Net"]</InArgument>
+          <InArgument x:TypeArguments="x:String">["BONUS"]</InArgument>
+          <InArgument x:TypeArguments="x:String">["PRIMA BRUTA ONCALL"]</InArgument>
+          <InArgument x:TypeArguments="x:String">["PRIMA BRUTA OVERTIME"]</InArgument>
+          <InArgument x:TypeArguments="x:String">["BENEFICIU IN NATURA"]</InArgument>
+          <InArgument x:TypeArguments="x:String">["BRUT PT IMPOZITARE"]</InArgument>
+          <InArgument x:TypeArguments="x:String">["BAZA CALCUL SOMAJ 1"]</InArgument>
+          <InArgument x:TypeArguments="x:String">["BAZA CALCUL CAS"]</InArgument>
+          <InArgument x:TypeArguments="x:String">["BAZA SANATATE"]</InArgument>
+          <InArgument x:TypeArguments="x:String">["VENIT NET PT IMPOZITARE"]</InArgument>
+          <InArgument x:TypeArguments="x:String">["BAZA PT IMPOZITARE"]</InArgument>
+          <InArgument x:TypeArguments="x:String">["BRUT TICHETE MASA"]</InArgument>
+          <InArgument x:TypeArguments="x:String">["BRUT TOTAL TICHETE"]</InArgument>
+          <InArgument x:TypeArguments="x:String">["NET"]</InArgument>
+          <InArgument x:TypeArguments="x:String">["CONTRIBUTIE SCHEMA PENSII"]</InArgument>
+          <InArgument x:TypeArguments="x:String">["BRUT DIURNA DELEGATIE"]</InArgument>
+        </scg:List>
+      </ui:FilterDataTable.SelectColumns>
+    </ui:FilterDataTable>
   </Sequence>
 </Activity>

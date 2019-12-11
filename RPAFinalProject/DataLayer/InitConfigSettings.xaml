@@ -6,7 +6,7 @@
   <mva:VisualBasic.Settings>
     <x:Null />
   </mva:VisualBasic.Settings>
-  <sap:VirtualizedContainerService.HintSize>593.6,1037.6</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>556.8,924</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>ActivityBuilder_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <sco:Collection x:TypeArguments="x:String">
@@ -58,7 +58,7 @@
       <AssemblyReference>System.ComponentModel.Composition</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="InitConfigSettings" sap:VirtualizedContainerService.HintSize="553.6,917.6" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence DisplayName="InitConfigSettings" sap:VirtualizedContainerService.HintSize="516.8,844" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
       <Variable x:TypeArguments="sd:DataTable" Name="configDataTable" />
     </Sequence.Variables>
@@ -67,7 +67,8 @@
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <Assign DisplayName="Initialize Output Value" sap:VirtualizedContainerService.HintSize="531.2,60" sap2010:WorkflowViewState.IdRef="Assign_1">
+    <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="494.4,92.8" sap2010:WorkflowViewState.IdRef="LogMessage_1" Level="Info" Message="[&quot;Reading Configs...&quot;]" />
+    <Assign DisplayName="Initialize Output Value" sap:VirtualizedContainerService.HintSize="494.4,60" sap2010:WorkflowViewState.IdRef="Assign_1">
       <Assign.To>
         <OutArgument x:TypeArguments="scg:Dictionary(x:String, x:Object)">[out_config]</OutArgument>
       </Assign.To>
@@ -75,43 +76,27 @@
         <InArgument x:TypeArguments="scg:Dictionary(x:String, x:Object)">[new Dictionary(of String, Object)]</InArgument>
       </Assign.Value>
     </Assign>
-    <ui:ExcelApplicationScope Password="{x:Null}" DisplayName="Excel Application Scope" sap:VirtualizedContainerService.HintSize="531.2,692.8" sap2010:WorkflowViewState.IdRef="ExcelApplicationScope_1" WorkbookPath="[in_configFile]">
-      <ui:ExcelApplicationScope.Body>
-        <ActivityAction x:TypeArguments="ui:WorkbookApplication">
+    <ui:ReadRange Range="{x:Null}" AddHeaders="True" DataTable="[configDataTable]" DisplayName="Read Settings Spreadsheet" sap:VirtualizedContainerService.HintSize="494.4,88" sap2010:WorkflowViewState.IdRef="ReadRange_1" SheetName="Settings" WorkbookPath="[in_configFile]" />
+    <ui:ForEachRow CurrentIndex="{x:Null}" DataTable="[configDataTable]" DisplayName="For Each Row" sap:VirtualizedContainerService.HintSize="494.4,358.4" sap2010:WorkflowViewState.IdRef="ForEachRow_1">
+      <ui:ForEachRow.Body>
+        <ActivityAction x:TypeArguments="sd:DataRow">
           <ActivityAction.Argument>
-            <DelegateInArgument x:TypeArguments="ui:WorkbookApplication" Name="ExcelWorkbookScope" />
+            <DelegateInArgument x:TypeArguments="sd:DataRow" Name="row" />
           </ActivityAction.Argument>
-          <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="516.8,583.2" sap2010:WorkflowViewState.IdRef="Sequence_2">
-            <sap:WorkflowViewStateService.ViewState>
-              <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-              </scg:Dictionary>
-            </sap:WorkflowViewStateService.ViewState>
-            <ui:ExcelReadRange Range="{x:Null}" AddHeaders="True" DataTable="[configDataTable]" DisplayName="Read Settings Spreadsheet" sap:VirtualizedContainerService.HintSize="494.4,60" sap2010:WorkflowViewState.IdRef="ExcelReadRange_1" SheetName="Settings" />
-            <ui:ForEachRow CurrentIndex="{x:Null}" DataTable="[configDataTable]" DisplayName="For Each Row" sap:VirtualizedContainerService.HintSize="494.4,358.4" sap2010:WorkflowViewState.IdRef="ForEachRow_1">
-              <ui:ForEachRow.Body>
-                <ActivityAction x:TypeArguments="sd:DataRow">
-                  <ActivityAction.Argument>
-                    <DelegateInArgument x:TypeArguments="sd:DataRow" Name="row" />
-                  </ActivityAction.Argument>
-                  <If Condition="[NOT String.IsNullOrEmpty(row(&quot;Name&quot;).ToString.Trim)]" sap:VirtualizedContainerService.HintSize="464,209.6" sap2010:WorkflowViewState.IdRef="If_1">
-                    <If.Then>
-                      <Assign DisplayName="Add key/value pair" sap:VirtualizedContainerService.HintSize="243.2,60" sap2010:WorkflowViewState.IdRef="Assign_2">
-                        <Assign.To>
-                          <OutArgument x:TypeArguments="x:Object">[out_config(row("Name").ToString.Trim)]</OutArgument>
-                        </Assign.To>
-                        <Assign.Value>
-                          <InArgument x:TypeArguments="x:Object">[row("Value")]</InArgument>
-                        </Assign.Value>
-                      </Assign>
-                    </If.Then>
-                  </If>
-                </ActivityAction>
-              </ui:ForEachRow.Body>
-            </ui:ForEachRow>
-          </Sequence>
+          <If Condition="[NOT String.IsNullOrEmpty(row(&quot;Name&quot;).ToString.Trim)]" DisplayName="If there are still settings to read" sap:VirtualizedContainerService.HintSize="464,209.6" sap2010:WorkflowViewState.IdRef="If_1">
+            <If.Then>
+              <Assign DisplayName="Add key/value pair" sap:VirtualizedContainerService.HintSize="243.2,60" sap2010:WorkflowViewState.IdRef="Assign_2">
+                <Assign.To>
+                  <OutArgument x:TypeArguments="x:Object">[out_config(row("Name").ToString.Trim)]</OutArgument>
+                </Assign.To>
+                <Assign.Value>
+                  <InArgument x:TypeArguments="x:Object">[row("Value")]</InArgument>
+                </Assign.Value>
+              </Assign>
+            </If.Then>
+          </If>
         </ActivityAction>
-      </ui:ExcelApplicationScope.Body>
-    </ui:ExcelApplicationScope>
+      </ui:ForEachRow.Body>
+    </ui:ForEachRow>
   </Sequence>
 </Activity>
