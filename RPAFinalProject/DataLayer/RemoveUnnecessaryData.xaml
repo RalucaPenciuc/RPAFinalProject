@@ -137,7 +137,6 @@
           <InArgument x:TypeArguments="x:String">["CUI"]</InArgument>
           <InArgument x:TypeArguments="x:String">["Departament"]</InArgument>
           <InArgument x:TypeArguments="x:String">["Subdepartament"]</InArgument>
-          <InArgument x:TypeArguments="x:String">["Functie"]</InArgument>
           <InArgument x:TypeArguments="x:String">["TARIFAR INCADRARE"]</InArgument>
           <InArgument x:TypeArguments="x:String">["REALIZAT SUPLIMENTAR"]</InArgument>
           <InArgument x:TypeArguments="x:String">["ORE DE NOAPTE"]</InArgument>
