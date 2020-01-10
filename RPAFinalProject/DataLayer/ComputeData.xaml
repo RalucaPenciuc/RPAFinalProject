@@ -9,7 +9,7 @@
   <mva:VisualBasic.Settings>
     <x:Null />
   </mva:VisualBasic.Settings>
-  <sap:VirtualizedContainerService.HintSize>376.8,1021.6</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>376.8,1288.8</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>ActivityBuilder_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <sco:Collection x:TypeArguments="x:String">
@@ -61,7 +61,7 @@
       <AssemblyReference>System.ComponentModel.Composition</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="ComputeData" sap:VirtualizedContainerService.HintSize="336.8,901.6" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence DisplayName="ComputeData" sap:VirtualizedContainerService.HintSize="336.8,1208.8" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
       <Variable x:TypeArguments="sd:DataTable" Name="divisionResult" />
     </Sequence.Variables>
@@ -91,7 +91,9 @@
         <InArgument x:TypeArguments="x:String" x:Key="divisionName">[in_divisionName]</InArgument>
       </ui:InvokeCode.Arguments>
     </ui:InvokeCode>
+    <WriteLine DisplayName="Write Line" sap:VirtualizedContainerService.HintSize="314.4,62.4" sap2010:WorkflowViewState.IdRef="WriteLine_1" Text="After invoke code Build DataTable with min, max and avg results" />
     <ui:WriteRange AddHeaders="False" DataTable="[divisionResult]" DisplayName="Write result in coresponding sheet" sap:VirtualizedContainerService.HintSize="314.4,116" sap2010:WorkflowViewState.IdRef="WriteRange_1" SheetName="[&quot;Comp&quot; + in_cuiName]" StartingCell="[&quot;A&quot; + inOut_sheetIndex.ToString]" WorkbookPath="Data\Output\Output_MinMaxMed.xlsx" />
+    <WriteLine DisplayName="Write Line" sap:VirtualizedContainerService.HintSize="314.4,62.4" sap2010:WorkflowViewState.IdRef="WriteLine_2" Text="After Write result in coresponding sheet" />
     <Assign DisplayName="Increment index used for write range" sap:VirtualizedContainerService.HintSize="314.4,60" sap2010:WorkflowViewState.IdRef="Assign_1">
       <Assign.To>
         <OutArgument x:TypeArguments="x:Int32">[inOut_sheetIndex]</OutArgument>
@@ -101,6 +103,7 @@
       </Assign.Value>
     </Assign>
     <ui:WriteRange AddHeaders="False" DataTable="[divisionResult]" DisplayName="Write result in &quot;Centralizator&quot; sheet" sap:VirtualizedContainerService.HintSize="314.4,116" sap2010:WorkflowViewState.IdRef="WriteRange_2" SheetName="Centralizator" StartingCell="[&quot;A&quot; + inOut_centralizatorIndex.ToString]" WorkbookPath="Data\Output\Output_MinMaxMed.xlsx" />
+    <WriteLine DisplayName="Write Line" sap:VirtualizedContainerService.HintSize="314.4,62.4" sap2010:WorkflowViewState.IdRef="WriteLine_3" Text="After Write result in Centralizator sheet" />
     <Assign DisplayName="Increment index used for write range" sap:VirtualizedContainerService.HintSize="314.4,60" sap2010:WorkflowViewState.IdRef="Assign_2">
       <Assign.To>
         <OutArgument x:TypeArguments="x:Int32">[inOut_centralizatorIndex]</OutArgument>
