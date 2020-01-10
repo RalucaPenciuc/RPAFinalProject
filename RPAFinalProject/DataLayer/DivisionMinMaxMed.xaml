@@ -5,11 +5,12 @@
     <x:Property Name="in_cuiName" Type="InArgument(x:String)" />
     <x:Property Name="inOut_cuiSheetIndex" Type="InOutArgument(x:Int32)" />
     <x:Property Name="inOut_centralizatorIndex" Type="InOutArgument(x:Int32)" />
+    <x:Property Name="inOut_minMaxMedResult" Type="InOutArgument(sd:DataTable)" />
   </x:Members>
   <mva:VisualBasic.Settings>
     <x:Null />
   </mva:VisualBasic.Settings>
-  <sap:VirtualizedContainerService.HintSize>526.4,1349.6</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>526.4,1309.6</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>ActivityBuilder_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <sco:Collection x:TypeArguments="x:String">
@@ -141,6 +142,7 @@
             <InOutArgument x:TypeArguments="x:Int32" x:Key="inOut_centralizatorIndex">[inOut_centralizatorIndex]</InOutArgument>
             <InArgument x:TypeArguments="x:String" x:Key="in_cuiName">[in_cuiName]</InArgument>
             <InOutArgument x:TypeArguments="x:Int32" x:Key="inOut_sheetIndex">[inOut_cuiSheetIndex]</InOutArgument>
+            <InOutArgument x:TypeArguments="sd:DataTable" x:Key="inOut_minMaxMedResult">[inOut_minMaxMedResult]</InOutArgument>
           </ui:InvokeWorkflowFile.Arguments>
         </ui:InvokeWorkflowFile>
         <Assign DisplayName="Increment to the next division" sap:VirtualizedContainerService.HintSize="314.4,60" sap2010:WorkflowViewState.IdRef="Assign_5">

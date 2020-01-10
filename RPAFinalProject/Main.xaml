@@ -58,6 +58,7 @@
       <Variable x:TypeArguments="scg:Dictionary(x:String, scg:List(sd:DataRow))" Name="TransactionData" />
       <Variable x:TypeArguments="sd:DataTable" Name="trimedInput" />
       <Variable x:TypeArguments="x:Int32" Name="centralizatorIndex" />
+      <Variable x:TypeArguments="x:Int32" Name="centralizatorIndexCopy" />
     </Flowchart.Variables>
     <sap:WorkflowViewStateService.ViewState>
       <scg:Dictionary x:TypeArguments="x:String, x:Object">
@@ -299,7 +300,8 @@
                         <ui:InvokeWorkflowFile ContinueOnError="{x:Null}" DisplayName="Invoke Workflow File" sap:VirtualizedContainerService.HintSize="314.4,88" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_5" UnSafe="False" WorkflowFileName="BusinessProcessLayer\ComputeCompaniiResultFile.xaml">
                           <ui:InvokeWorkflowFile.Arguments>
                             <InArgument x:TypeArguments="scg:Dictionary(x:String, scg:List(sd:DataRow))" x:Key="in_input">[TransactionData]</InArgument>
-                            <InOutArgument x:TypeArguments="x:Int32" x:Key="in_centralizatorIndex">[centralizatorIndex]</InOutArgument>
+                            <InOutArgument x:TypeArguments="x:Int32" x:Key="inOut_centralizatorIndex">[centralizatorIndex]</InOutArgument>
+                            <InOutArgument x:TypeArguments="x:Int32" x:Key="inOut_centralizatorIndexCopy">[centralizatorIndexCopy]</InOutArgument>
                           </ui:InvokeWorkflowFile.Arguments>
                         </ui:InvokeWorkflowFile>
                       </Sequence>
@@ -405,6 +407,14 @@
         <Assign sap:VirtualizedContainerService.HintSize="464,60" sap2010:WorkflowViewState.IdRef="Assign_20">
           <Assign.To>
             <OutArgument x:TypeArguments="x:Int32">[centralizatorIndex]</OutArgument>
+          </Assign.To>
+          <Assign.Value>
+            <InArgument x:TypeArguments="x:Int32">1</InArgument>
+          </Assign.Value>
+        </Assign>
+        <Assign sap:VirtualizedContainerService.HintSize="464,60" sap2010:WorkflowViewState.IdRef="Assign_21">
+          <Assign.To>
+            <OutArgument x:TypeArguments="x:Int32">[centralizatorIndexCopy]</OutArgument>
           </Assign.To>
           <Assign.Value>
             <InArgument x:TypeArguments="x:Int32">1</InArgument>
