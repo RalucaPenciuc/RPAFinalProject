@@ -6,7 +6,7 @@
   <mva:VisualBasic.Settings>
     <x:Null />
   </mva:VisualBasic.Settings>
-  <sap:VirtualizedContainerService.HintSize>556.8,1024</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>556.8,1211.2</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>ActivityBuilder_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <sco:Collection x:TypeArguments="x:String">
@@ -58,7 +58,7 @@
       <AssemblyReference>System.ComponentModel.Composition</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="RemoveUnnecessaryData" sap:VirtualizedContainerService.HintSize="516.8,944" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence DisplayName="RemoveUnnecessaryData" sap:VirtualizedContainerService.HintSize="516.8,1131.2" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
       <Variable x:TypeArguments="sd:DataTable" Name="inputDataTable" />
     </Sequence.Variables>
@@ -125,7 +125,7 @@
         </ActivityAction>
       </ui:ForEachRow.Body>
     </ui:ForEachRow>
-    <ui:FilterDataTable DataTable="[inputDataTable]" DisplayName="Keep Relevant Columns" FilterRowsMode="Keep" sap:VirtualizedContainerService.HintSize="494.4,60" sap2010:WorkflowViewState.IdRef="FilterDataTable_2" OutputDataTable="[out_trimedInputDataTable]" SelectColumnsMode="Keep">
+    <ui:FilterDataTable DataTable="[inputDataTable]" DisplayName="Delete Irrelevant Columns" FilterRowsMode="Keep" sap:VirtualizedContainerService.HintSize="494.4,60" sap2010:WorkflowViewState.IdRef="FilterDataTable_2" OutputDataTable="[inputDataTable]" SelectColumnsMode="Keep">
       <ui:FilterDataTable.Filters>
         <scg:List x:TypeArguments="ui:FilterOperationArgument" Capacity="4">
           <ui:FilterOperationArgument Column="{x:Null}" Operand="{x:Null}" BooleanOperator="And" Operator="LT" />
@@ -170,5 +170,8 @@
         </scg:List>
       </ui:FilterDataTable.SelectColumns>
     </ui:FilterDataTable>
+    <ui:SortDataTable ColumnIndex="{x:Null}" DataColumn="{x:Null}" ColumnName="Subdepartament" DataTable="[inputDataTable]" DisplayName="Sort Data Table" sap:VirtualizedContainerService.HintSize="494.4,22.4" sap2010:WorkflowViewState.IdRef="SortDataTable_1" Order="Ascending" OutputDataTable="[inputDataTable]" />
+    <ui:SortDataTable ColumnIndex="{x:Null}" DataColumn="{x:Null}" ColumnName="Departament" DataTable="[inputDataTable]" DisplayName="Sort Data Table" sap:VirtualizedContainerService.HintSize="494.4,22.4" sap2010:WorkflowViewState.IdRef="SortDataTable_2" Order="Ascending" OutputDataTable="[inputDataTable]" />
+    <ui:SortDataTable ColumnIndex="{x:Null}" DataColumn="{x:Null}" ColumnName="CUI" DataTable="[inputDataTable]" DisplayName="Sort Data Table" sap:VirtualizedContainerService.HintSize="494.4,22.4" sap2010:WorkflowViewState.IdRef="SortDataTable_3" Order="Ascending" OutputDataTable="[out_trimedInputDataTable]" />
   </Sequence>
 </Activity>
