@@ -76,7 +76,7 @@
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
     <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="414.4,92.8" sap2010:WorkflowViewState.IdRef="LogMessage_1" Level="Info" Message="[&quot;Downloading the input file...&quot;]" />
-    <uga:GSuiteApplicationScope ApiKey="{x:Null}" CredentialID="{x:Null}" CredentialSecret="{x:Null}" Password="{x:Null}" ServiceAccountEmail="{x:Null}" AuthenticationType="ServiceAccountKey" DisplayName="GSuite Application Scope" HasDomainWideAccesss="True" sap:VirtualizedContainerService.HintSize="414.4,471.2" sap2010:WorkflowViewState.IdRef="GSuiteApplicationScope_1" KeyPath="[in_keyPath]" KeyType="JSON" Services="Gmail, Drive" UserEmail="[in_userEmail]">
+    <uga:GSuiteApplicationScope ApiKey="{x:Null}" CredentialID="{x:Null}" CredentialSecret="{x:Null}" Password="{x:Null}" ServiceAccountEmail="{x:Null}" AuthenticationType="ServiceAccountKey" DisplayName="GSuite Application Scope" HasDomainWideAccesss="True" sap:VirtualizedContainerService.HintSize="414.4,471.2" sap2010:WorkflowViewState.IdRef="GSuiteApplicationScope_1" KeyPath="[in_keyPath]" KeyType="JSON" Services="Drive" UserEmail="[in_userEmail]">
       <uga:GSuiteApplicationScope.Body>
         <ActivityAction x:TypeArguments="ug:SimpleObjectContainer">
           <ActivityAction.Argument>
