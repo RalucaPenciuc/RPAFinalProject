@@ -168,7 +168,7 @@
         </Assign>
         <If Condition="[in_divisionType.Equals(&quot;Departament&quot;)]" DisplayName="If division type is Departament" sap:VirtualizedContainerService.HintSize="464,209.6" sap2010:WorkflowViewState.IdRef="If_1">
           <If.Then>
-            <ui:MergeDataTable Destination="[inOut_medResult]" DisplayName="Merge temp result to out result" sap:VirtualizedContainerService.HintSize="200,22.4" sap2010:WorkflowViewState.IdRef="MergeDataTable_1" MissingSchemaAction="Add" Source="[tempMedResult]" />
+            <ui:MergeDataTable Destination="[inOut_medResult]" DisplayName="Merge temp result to out result" sap:VirtualizedContainerService.HintSize="200,22.4" sap2010:WorkflowViewState.IdRef="MergeDataTable_2" MissingSchemaAction="Add" Source="[tempMedResult]" />
           </If.Then>
         </If>
       </Sequence>
