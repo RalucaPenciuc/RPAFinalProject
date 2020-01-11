@@ -1,4 +1,12 @@
-<Activity mc:Ignorable="sap sap2010" x:Class="ComputeChartsResultFiles" mva:VisualBasic.Settings="{x:Null}" sap:VirtualizedContainerService.HintSize="499.2,1080.8" sap2010:WorkflowViewState.IdRef="ActivityBuilder_1" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:mva="clr-namespace:Microsoft.VisualBasic.Activities;assembly=System.Activities" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=mscorlib" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+<Activity mc:Ignorable="sap sap2010" x:Class="ComputeChartsResultFiles" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:mva="clr-namespace:Microsoft.VisualBasic.Activities;assembly=System.Activities" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=mscorlib" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <x:Members>
+    <x:Property Name="in_config" Type="InArgument(scg:Dictionary(x:String, x:Object))" />
+  </x:Members>
+  <mva:VisualBasic.Settings>
+    <x:Null />
+  </mva:VisualBasic.Settings>
+  <sap:VirtualizedContainerService.HintSize>499.2,1080.8</sap:VirtualizedContainerService.HintSize>
+  <sap2010:WorkflowViewState.IdRef>ActivityBuilder_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <sco:Collection x:TypeArguments="x:String">
       <x:String>System.Activities</x:String>
@@ -49,6 +57,9 @@
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
   <Sequence DisplayName="ComputeChartsResultFiles" sap:VirtualizedContainerService.HintSize="459.2,1000.8" sap2010:WorkflowViewState.IdRef="Sequence_3">
+    <Sequence.Variables>
+      <Variable x:TypeArguments="x:String" Default="[in_config(&quot;outputChartsPath&quot;).ToString]" Name="outputChartsPath" />
+    </Sequence.Variables>
     <sap:WorkflowViewStateService.ViewState>
       <scg:Dictionary x:TypeArguments="x:String, x:Object">
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -78,7 +89,7 @@
                   <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                 </scg:Dictionary>
               </sap:WorkflowViewStateService.ViewState>
-              <ui:InvokeVBA sap2010:Annotation.AnnotationText="CodeFilePath: the VBA code being invoked can be put in a .txt file and indicated in this input property.&#xA;&#xA;EntryMethodName: this is the function/sub name that is going to be called.&#xA;&#xA;EntryMethodParameters: this is the parameters that are going to be passsed to the function/sub.&#xA;&#xA;OutputValue: any output will be saved in this property." CodeFilePath="Data\charts-code.txt" DisplayName="Invoke VBA" EntryMethodName="Main" EntryMethodParameters="[{&quot;D:\sem5\rpa\final-project\project\RPAFinalProject\RPAFinalProject\Data\Output\Charts&quot;}]" sap:VirtualizedContainerService.HintSize="314.4,276" sap2010:WorkflowViewState.IdRef="InvokeVBA_1" OutputValue="[sheets]">
+              <ui:InvokeVBA sap2010:Annotation.AnnotationText="CodeFilePath: the VBA code being invoked can be put in a .txt file and indicated in this input property.&#xA;&#xA;EntryMethodName: this is the function/sub name that is going to be called.&#xA;&#xA;EntryMethodParameters: this is the parameters that are going to be passsed to the function/sub.&#xA;&#xA;OutputValue: any output will be saved in this property." CodeFilePath="Data\charts-code.txt" DisplayName="Invoke VBA" EntryMethodName="Main" EntryMethodParameters="[{outputChartsPath}]" sap:VirtualizedContainerService.HintSize="314.4,276" sap2010:WorkflowViewState.IdRef="InvokeVBA_1" OutputValue="[sheets]">
                 <sap:WorkflowViewStateService.ViewState>
                   <scg:Dictionary x:TypeArguments="x:String, x:Object">
                     <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
