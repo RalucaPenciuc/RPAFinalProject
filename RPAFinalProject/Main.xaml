@@ -260,7 +260,7 @@
                   <av:PointCollection x:Key="ConnectorLocation">50,490 20,490 20,270 250,270</av:PointCollection>
                 </scg:Dictionary>
               </sap:WorkflowViewStateService.ViewState>
-              <Flowchart DisplayName="Transaction Processing" sap:VirtualizedContainerService.HintSize="614.4,636.8" sap2010:WorkflowViewState.IdRef="Flowchart_2">
+              <Flowchart DisplayName="Transaction Processing" sap:VirtualizedContainerService.HintSize="200,52.8" sap2010:WorkflowViewState.IdRef="Flowchart_2">
                 <sap:WorkflowViewStateService.ViewState>
                   <scg:Dictionary x:TypeArguments="x:String, x:Object">
                     <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -291,7 +291,7 @@
                           <av:Size x:Key="ShapeSize">200,52.8</av:Size>
                         </scg:Dictionary>
                       </sap:WorkflowViewStateService.ViewState>
-                      <Sequence DisplayName="Manipulate UI" sap:VirtualizedContainerService.HintSize="336.8,212.8" sap2010:WorkflowViewState.IdRef="Sequence_6">
+                      <Sequence DisplayName="Manipulate UI" sap:VirtualizedContainerService.HintSize="200,52.8" sap2010:WorkflowViewState.IdRef="Sequence_6">
                         <sap:WorkflowViewStateService.ViewState>
                           <scg:Dictionary x:TypeArguments="x:String, x:Object">
                             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -321,7 +321,7 @@
                             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                           </scg:Dictionary>
                         </sap:WorkflowViewStateService.ViewState>
-                        <ui:LogMessage DisplayName="Log message" sap:VirtualizedContainerService.HintSize="314,91" sap2010:WorkflowViewState.IdRef="LogMessage_1" Level="Error" Message="[&quot;Business rule exception&quot;]" />
+                        <ui:LogMessage DisplayName="Log message" sap:VirtualizedContainerService.HintSize="314.4,92.8" sap2010:WorkflowViewState.IdRef="LogMessage_1" Level="Error" Message="[&quot;Business rule exception&quot;]" />
                       </Sequence>
                     </FlowStep>
                   </FlowDecision.False>
@@ -386,7 +386,7 @@
           <av:PointCollection x:Key="ConnectorLocation">350,198.4 350,229.6</av:PointCollection>
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
-      <Sequence sap2010:Annotation.AnnotationText="Read configs, Get input data, Get transactions" DisplayName="Init" sap:VirtualizedContainerService.HintSize="200,96.8" sap2010:WorkflowViewState.IdRef="Sequence_7">
+      <Sequence sap2010:Annotation.AnnotationText="Read configs, Get input data, Get transactions" DisplayName="Init" sap:VirtualizedContainerService.HintSize="486.4,846.4" sap2010:WorkflowViewState.IdRef="Sequence_7">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -403,7 +403,7 @@
             </ui:InvokeWorkflowFile>
           </If.Then>
         </If>
-        <ui:InvokeWorkflowFile ContinueOnError="{x:Null}" DisplayName="Invoke GetInputFromDrive Workflow" sap:VirtualizedContainerService.HintSize="464,88" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_1" UnSafe="False" WorkflowFileName="ServiceLayer\GoogleDrive_GetInputData.xaml">
+        <ui:InvokeWorkflowFile ContinueOnError="{x:Null}" DisplayName="Invoke GetInputFromDrive Workflow" sap:VirtualizedContainerService.HintSize="464,88" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_12" UnSafe="False" WorkflowFileName="ServiceLayer\GoogleDrive_GetInputData.xaml">
           <ui:InvokeWorkflowFile.Arguments>
             <OutArgument x:TypeArguments="x:String" x:Key="out_fileFullPath">[inputFilePath]</OutArgument>
             <InArgument x:TypeArguments="scg:Dictionary(x:String, x:Object)" x:Key="in_config">[Config]</InArgument>
@@ -414,7 +414,7 @@
             </scg:Dictionary>
           </sap:WorkflowViewStateService.ViewState>
         </ui:InvokeWorkflowFile>
-        <ui:InvokeWorkflowFile ContinueOnError="{x:Null}" DisplayName="Invoke RemoveUnnecessaryData Workflow" sap:VirtualizedContainerService.HintSize="464,88" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_6" UnSafe="False" WorkflowFileName="DataLayer\RemoveUnnecessaryData.xaml">
+        <ui:InvokeWorkflowFile ContinueOnError="{x:Null}" DisplayName="Invoke RemoveUnnecessaryData Workflow" sap:VirtualizedContainerService.HintSize="464,88" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_11" UnSafe="False" WorkflowFileName="DataLayer\RemoveUnnecessaryData.xaml">
           <ui:InvokeWorkflowFile.Arguments>
             <InArgument x:TypeArguments="x:String" x:Key="in_inputFilePath">[inputFilePath]</InArgument>
             <OutArgument x:TypeArguments="sd:DataTable" x:Key="out_trimedInputDataTable">[trimedInput]</OutArgument>
@@ -425,7 +425,7 @@
             </scg:Dictionary>
           </sap:WorkflowViewStateService.ViewState>
         </ui:InvokeWorkflowFile>
-        <Assign sap:VirtualizedContainerService.HintSize="464,60" sap2010:WorkflowViewState.IdRef="Assign_20">
+        <Assign sap:VirtualizedContainerService.HintSize="464,60" sap2010:WorkflowViewState.IdRef="Assign_22">
           <Assign.To>
             <OutArgument x:TypeArguments="x:Int32">[centralizatorIndex]</OutArgument>
           </Assign.To>
@@ -433,7 +433,7 @@
             <InArgument x:TypeArguments="x:Int32">1</InArgument>
           </Assign.Value>
         </Assign>
-        <Assign sap:VirtualizedContainerService.HintSize="464,60" sap2010:WorkflowViewState.IdRef="Assign_21">
+        <Assign sap:VirtualizedContainerService.HintSize="464,60" sap2010:WorkflowViewState.IdRef="Assign_23">
           <Assign.To>
             <OutArgument x:TypeArguments="x:Int32">[centralizatorIndexCopy]</OutArgument>
           </Assign.To>

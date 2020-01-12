@@ -65,10 +65,10 @@
   <Sequence DisplayName="GoogleDrive_GetInputData" sap:VirtualizedContainerService.HintSize="436.8,728.8" sap2010:WorkflowViewState.IdRef="Sequence_2">
     <Sequence.Variables>
       <Variable x:TypeArguments="gadvd:File" Name="inputFile" />
-      <Variable x:TypeArguments="x:String" Default="[in_config(&quot;keyPath&quot;).ToString]" Name="in_keyPath" />
-      <Variable x:TypeArguments="x:String" Default="[in_config(&quot;userEmail&quot;).ToString]" Name="in_userEmail" />
-      <Variable x:TypeArguments="x:String" Default="[in_config(&quot;inputFileID&quot;).ToString]" Name="in_fileID" />
-      <Variable x:TypeArguments="x:String" Default="[in_config(&quot;inputFilePath&quot;).ToString]" Name="in_fileLocalPath" />
+      <Variable x:TypeArguments="x:String" Default="[in_config(&quot;keyPath&quot;).ToString]" Name="keyPath" />
+      <Variable x:TypeArguments="x:String" Default="[in_config(&quot;userEmail&quot;).ToString]" Name="userEmail" />
+      <Variable x:TypeArguments="x:String" Default="[in_config(&quot;inputFileID&quot;).ToString]" Name="inputfileID" />
+      <Variable x:TypeArguments="x:String" Default="[in_config(&quot;inputFilePath&quot;).ToString]" Name="fileLocalPath" />
     </Sequence.Variables>
     <sap:WorkflowViewStateService.ViewState>
       <scg:Dictionary x:TypeArguments="x:String, x:Object">
@@ -76,7 +76,7 @@
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
     <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="414.4,92.8" sap2010:WorkflowViewState.IdRef="LogMessage_1" Level="Info" Message="[&quot;Downloading the input file...&quot;]" />
-    <uga:GSuiteApplicationScope ApiKey="{x:Null}" CredentialID="{x:Null}" CredentialSecret="{x:Null}" Password="{x:Null}" ServiceAccountEmail="{x:Null}" AuthenticationType="ServiceAccountKey" DisplayName="GSuite Application Scope" HasDomainWideAccesss="True" sap:VirtualizedContainerService.HintSize="414.4,471.2" sap2010:WorkflowViewState.IdRef="GSuiteApplicationScope_1" KeyPath="[in_keyPath]" KeyType="JSON" Services="Drive" UserEmail="[in_userEmail]">
+    <uga:GSuiteApplicationScope ApiKey="{x:Null}" CredentialID="{x:Null}" CredentialSecret="{x:Null}" Password="{x:Null}" ServiceAccountEmail="{x:Null}" AuthenticationType="ServiceAccountKey" DisplayName="GSuite Application Scope" HasDomainWideAccesss="True" sap:VirtualizedContainerService.HintSize="414.4,471.2" sap2010:WorkflowViewState.IdRef="GSuiteApplicationScope_1" KeyPath="[keyPath]" KeyType="JSON" Services="Drive" UserEmail="[userEmail]">
       <uga:GSuiteApplicationScope.Body>
         <ActivityAction x:TypeArguments="ug:SimpleObjectContainer">
           <ActivityAction.Argument>
@@ -88,16 +88,16 @@
                 <x:Boolean x:Key="IsExpanded">True</x:Boolean>
               </scg:Dictionary>
             </sap:WorkflowViewStateService.ViewState>
-            <uga:GetFileInfo AuthScopesInvalid="False" DisplayName="Get Input File Info" FileId="[in_fileID]" sap:VirtualizedContainerService.HintSize="314.4,60" sap2010:WorkflowViewState.IdRef="GetFileInfo_1" Result="[inputFile]" SupportsTeamDrives="False" />
-            <Assign DisplayName="Compute full local path of input" sap:VirtualizedContainerService.HintSize="314.4,60" sap2010:WorkflowViewState.IdRef="Assign_1">
+            <uga:GetFileInfo AuthScopesInvalid="False" DisplayName="Get File Info By Found ID" FileId="[inputfileID]" sap:VirtualizedContainerService.HintSize="314.4,60" sap2010:WorkflowViewState.IdRef="GetFileInfo_4" Result="[inputFile]" SupportsTeamDrives="False" />
+            <Assign DisplayName="Compute Full Local Path Of Input" sap:VirtualizedContainerService.HintSize="314.4,60" sap2010:WorkflowViewState.IdRef="Assign_6">
               <Assign.To>
                 <OutArgument x:TypeArguments="x:String">[out_fileFullPath]</OutArgument>
               </Assign.To>
               <Assign.Value>
-                <InArgument x:TypeArguments="x:String">[in_fileLocalPath + inputFile.Name]</InArgument>
+                <InArgument x:TypeArguments="x:String">[fileLocalPath + inputFile.Name]</InArgument>
               </Assign.Value>
             </Assign>
-            <uga:DownloadFile AuthScopesInvalid="False" DisplayName="Download Input File" FileId="[in_fileID]" sap:VirtualizedContainerService.HintSize="314.4,60" sap2010:WorkflowViewState.IdRef="DownloadFile_1" LocalPath="[in_fileLocalPath]" SupportsTeamDrives="False" />
+            <uga:DownloadFile AuthScopesInvalid="False" DisplayName="Download Input File" FileId="[inputfileID]" sap:VirtualizedContainerService.HintSize="314.4,60" sap2010:WorkflowViewState.IdRef="DownloadFile_4" LocalPath="[fileLocalPath]" SupportsTeamDrives="False" />
           </Sequence>
         </ActivityAction>
       </uga:GSuiteApplicationScope.Body>
