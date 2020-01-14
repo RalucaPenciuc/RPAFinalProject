@@ -69,7 +69,7 @@
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
     <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="314.4,92.8" sap2010:WorkflowViewState.IdRef="LogMessage_1" Level="Info" Message="[&quot;Sending email notification...&quot;]" />
-    <ui:SendMail Bcc="{x:Null}" Cc="{x:Null}" From="{x:Null}" MailMessage="{x:Null}" Name="{x:Null}" TimeoutMS="{x:Null}" Body="[&quot;You can find the output files here:&quot; + &quot;https://drive.google.com/open?id=&quot; + in_outputFolderID]" DisplayName="Send SMTP Mail Message" Email="penciuc.raluca@gmail.com" EnableSSL="True" sap:VirtualizedContainerService.HintSize="314.4,146.4" sap2010:WorkflowViewState.IdRef="SendMail_1" IsBodyHtml="False" Password="ztpasvlrdjserqac" Port="465" SecureConnection="SslOnConnect" Server="smtp.gmail.com" Subject="Consolidation data - done" To="[clientEmail]">
+    <ui:SendMail Bcc="{x:Null}" Cc="{x:Null}" From="{x:Null}" MailMessage="{x:Null}" Name="{x:Null}" TimeoutMS="{x:Null}" Body="[&quot;You can find the output files here:&quot; + &quot;https://drive.google.com/open?id=&quot; + in_outputFolderID]" DisplayName="Send SMTP Mail Message" Email="fwf.mentorship@gmail.com" EnableSSL="True" sap:VirtualizedContainerService.HintSize="314.4,146.4" sap2010:WorkflowViewState.IdRef="SendMail_1" IsBodyHtml="False" Password="fwfcompany101" Port="465" SecureConnection="SslOnConnect" Server="smtp.gmail.com" Subject="Consolidation data - done" To="[clientEmail]">
       <ui:SendMail.Files>
         <scg:List x:TypeArguments="InArgument(x:String)" Capacity="0" />
       </ui:SendMail.Files>
